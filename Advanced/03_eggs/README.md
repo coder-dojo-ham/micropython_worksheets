@@ -34,7 +34,7 @@ In this game, it means we can write the code for an egg just once and not have t
 
 
 
-##2. Create the game object
+## 2. Create the game object
 
 Open the Mu editor and click `New` to create a new program file. Write a comment to say what the program does. Then add the `import` statements to access the micro:bit features we need. We will be using random numbers in the program, so import that Python module too.
 
