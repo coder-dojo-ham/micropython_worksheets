@@ -138,7 +138,7 @@ Work through the logic inside the `move_basket()` method to make sure you unders
 
 The changes to the `play()` method also add the game timer to the program.
 
-​```python
+```python
 class EggGame:
 
 	def __init__(self):
