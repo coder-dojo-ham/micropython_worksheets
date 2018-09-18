@@ -69,8 +69,8 @@ class EggGame:
 
 # Main program
 if __name__ == "__main__":
-    # execute only if run as a script
-    game = EggGame()
+	# execute only if run as a script
+	game = EggGame()
 ```
 
 Remember to save the file every few minutes as you work through the project.
@@ -123,10 +123,10 @@ class Basket:
 
     def __init__(self):
         self.x = BASKET_START_X
-    
+	
     def show(self):
         display.set_pixel(self.x, BASKET_Y, BASKET_BRIGHTNESS)
-    
+	
     def hide(self):
         display.set_pixel(self.x, BASKET_Y, OFF_BRIGHTNESS)
 ```
@@ -142,37 +142,37 @@ The changes to the `play()` method also add the game timer to the program.
 ```python
 class EggGame:
 
-    def __init__(self):
-        self.basket = Basket()
-        self.start_time = 0
-        self.start()
-        self.play()
-        self.finish()
+	def __init__(self):
+		self.basket = Basket()
+		self.start_time = 0
+		self.start()
+		self.play()
+		self.finish()
 
-    def move_basket(self):
-        current_x = self.basket.x
-        if button_a.was_pressed():
-            # move left
-            if current_x > MIN_X:
-                self.basket.hide()
-                self.basket.x = current_x - 1
-        elif button_b.was_pressed():
-            # move right    
-            if current_x < MAX_X:
-                self.basket.hide()
-                self.basket.x = current_x + 1
-        self.basket.show()
+	def move_basket(self):
+		current_x = self.basket.x
+		if button_a.was_pressed():
+			# move left
+			if current_x > MIN_X:
+				self.basket.hide()
+				self.basket.x = current_x - 1
+		elif button_b.was_pressed():
+			# move right	
+			if current_x < MAX_X:
+				self.basket.hide()
+				self.basket.x = current_x + 1
+		self.basket.show()
 
-    def start(self):
-        self.start_time = running_time()
-        self.basket.show()
+	def start(self):
+		self.start_time = running_time()
+		self.basket.show()
 
-    def play(self):
-        while running_time() - self.start_time < GAME_LENGTH * 1000:
-            self.move_basket()
+	def play(self):
+		while running_time() - self.start_time < GAME_LENGTH * 1000:
+			self.move_basket()
 
-    def finish(self):
-        display.scroll("finish")
+	def finish(self):
+		display.scroll("finish")
 ```
 
 Flash the micro:bit and check that you can see the basket on the bottom row of LEDs. It should move left and right when you press the buttons but it should not disappear off the edge of the display. After 20 seconds, the game will end with the “finish” message.
@@ -191,27 +191,27 @@ The game code will need to know if the egg has been caught in the basket or has 
 ```python
 class Egg:
 
-    def __init__(self, x):
-        self.x = x
-        self.y = EGG_START_Y
+	def __init__(self, x):
+		self.x = x
+		self.y = EGG_START_Y
 
-    def show(self):
-        try:
-            display.set_pixel(self.x, self.y, EGG_BRIGHTNESS)
-        except ValueError:
-            pass
+	def show(self):
+		try:
+			display.set_pixel(self.x, self.y, EGG_BRIGHTNESS)
+		except ValueError:
+			pass
 
-    def hide(self):
-        display.set_pixel(self.x, self.y, OFF_BRIGHTNESS)
+	def hide(self):
+		display.set_pixel(self.x, self.y, OFF_BRIGHTNESS)
 
-    def move_down(self):
-        self.y += 1
+	def move_down(self):
+		self.y += 1
 
-    def is_smashed(self):
-        return (self.y > MAX_Y)
+	def is_smashed(self):
+		return (self.y > MAX_Y)
 
-    def is_caught(self, basket_x):
-        return ((self.y == MAX_Y) and (self.x == basket_x))
+	def is_caught(self, basket_x):
+		return ((self.y == MAX_Y) and (self.x == basket_x))
 ```
 
 With the `Egg` class written, you can use its methods in the game code. Add the code below to the `EggGame` code.
@@ -228,16 +228,16 @@ Make sure you understand how the `show_eggs()` and `hide_eggs()` methods work.
 
 
 ```python
-    def show_eggs(self):
-        for egg in self.eggs:
-            egg.show()
-    
-    def hide_eggs(self):
-        for egg in self.eggs:
-            egg.hide()
+	def show_eggs(self):
+		for egg in self.eggs:
+			egg.show()
+	
+	def hide_eggs(self):
+		for egg in self.eggs:
+			egg.hide()
 
-    def drop_egg(self):
-        self.eggs.append(Egg(random.randint(MIN_X, MAX_X)))
+	def drop_egg(self):
+		self.eggs.append(Egg(random.randint(MIN_X, MAX_X)))
 ```
 
 Now change the ``__init__()`` method so that it looks exactly like the code below.
@@ -245,23 +245,23 @@ Now change the ``__init__()`` method so that it looks exactly like the code belo
 ```python
 class EggGame:
 
-    def __init__(self):
-        self.basket = Basket()
-        self.eggs = []
-        self.start_time = 0
-        self.start()
-        self.play()
-        self.finish()
+	def __init__(self):
+		self.basket = Basket()
+		self.eggs = []
+		self.start_time = 0
+		self.start()
+		self.play()
+		self.finish()
 ```
 
 Finally add two more statements to the start() method. This will drop the first egg and display it.
 
 ```python
-    def start(self):
-        self.start_time = running_time()
-        self.drop_egg()
-        self.show_eggs()
-        self.basket.show()
+	def start(self):
+    	self.start_time = running_time()
+		self.drop_egg()
+		self.show_eggs()
+		self.basket.show()
 ```
 
 Flash the micro:bit and check that, as well as the basket, you can see one egg in a random position on the top row of LEDs. Press the micro:bit reset button a few times to see where the egg appears.
@@ -277,15 +277,15 @@ The `sweep_up_eggs()` and `caught_egg()` methods use a powerful Python feature c
 > Add this code to `EggGame` immediatley after the drop_egg` ()` method. Make sure you indent it correctly to line up with the other methods.
 
 ```python
-    def move_eggs(self):
-        for egg in self.eggs:
-            egg.move_down()
+	def move_eggs(self):
+		for egg in self.eggs:
+			egg.move_down()
 
-    def sweep_up_eggs(self):
-        self.eggs[:] = [egg for egg in self.eggs if not (egg.is_smashed() or egg.is_caught(self.basket.x))]
+	def sweep_up_eggs(self):
+		self.eggs[:] = [egg for egg in self.eggs if not (egg.is_smashed() or egg.is_caught(self.basket.x))]
 
-    def caught_egg(self):
-        return [egg for egg in self.eggs if egg.is_caught(self.basket.x)]
+	def caught_egg(self):
+		return [egg for egg in self.eggs if egg.is_caught(self.basket.x)]
 ```
 
 Now change the ``__init__()`` method so that it looks exactly like the code below. This sets up the scoring and the “clock” that will control how fast the eggs move.
@@ -293,15 +293,15 @@ Now change the ``__init__()`` method so that it looks exactly like the code belo
 ```python
 class EggGame:
 
-    def __init__(self):
-        self.basket = Basket()
-        self.eggs = []
-        self.start_time = 0
-        self.last_tick = 0
-        self.score = 0
-        self.start()
-        self.play()
-        self.finish()
+	def __init__(self):
+		self.basket = Basket()
+		self.eggs = []
+		self.start_time = 0
+		self.last_tick = 0
+		self.score = 0
+		self.start()
+		self.play()
+		self.finish()
 ```
 
 Finally, change the `start()` , `play()` and `finish()` methods as shown below.
@@ -309,28 +309,28 @@ Finally, change the `start()` , `play()` and `finish()` methods as shown below.
 Work through the logic inside the `play()` method to make sure you understand what’s happening.
 
 ```python
-    def start(self):
-        self.start_time = running_time()
-        self.last_tick = self.start_time
-        self.drop_egg()
-        self.show_eggs()
-        self.basket.show()
+	def start(self):
+		self.start_time = running_time()
+		self.last_tick = self.start_time
+		self.drop_egg()
+		self.show_eggs()
+		self.basket.show()
 
-    def play(self):
-        while running_time() - self.start_time < GAME_LENGTH * 1000:
-            self.move_basket()
-            if running_time() - self.last_tick > TICK:
-                self.last_tick += TICK
-                self.hide_eggs()
-                self.move_eggs()
-                if self.caught_egg():
-                    self.score += 1 
-                self.drop_egg()
-                self.sweep_up_eggs()
-                self.show_eggs()
-    
-    def finish(self):
-        display.scroll("Score: {} eggs".format(str(self.score)), 100)
+	def play(self):
+		while running_time() - self.start_time < GAME_LENGTH * 1000:
+			self.move_basket()
+			if running_time() - self.last_tick > TICK:
+				self.last_tick += TICK
+				self.hide_eggs()
+				self.move_eggs()
+				if self.caught_egg():
+					self.score += 1	
+				self.drop_egg()
+				self.sweep_up_eggs()
+				self.show_eggs()
+	
+	def finish(self):
+		display.scroll("Score: {} eggs".format(str(self.score)), 100)
 ```
 
 Flash the micro:bit and play the game. See how many eggs you can catch in the game time. Check that the score is displayed correctly.
