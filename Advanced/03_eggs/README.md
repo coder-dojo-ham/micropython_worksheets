@@ -254,7 +254,7 @@ class EggGame:
         self.finish()
 ```
 
-Finally add two more statements to the start() method. This will drop the first egg and display it.
+Finally add two more statements to the `start()` method. This will drop the first egg and display it.
 
 ```python
     def start(self):
@@ -339,7 +339,9 @@ Flash the micro:bit and play the game. See how many eggs you can catch in the ga
 
 ## 7. What next?
 
-Well done! You have the basic It’s Raining Eggs game working. How could you improve the game? Here are some ideas:
+Well done! You have the It’s Raining Eggs game working. 
+
+How could you improve the game? Here are some ideas:
 
 -   Speed up the rate at which the eggs drop - this is an easy change :-)
 
