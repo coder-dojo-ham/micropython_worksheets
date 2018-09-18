@@ -267,7 +267,7 @@ Flash the micro:bit and check that, as well as the basket, you can see one egg i
 
 
 
-##6. Let the eggs rain down
+## 6. Let the eggs rain down
 
 With one egg working, you can now add the code to handle many eggs at once, and make them drop. 
 
@@ -336,7 +336,7 @@ Flash the micro:bit and play the game. See how many eggs you can catch in the ga
 
 
 
-##7. What next?
+## 7. What next?
 
 Well done! You have the basic It’s Raining Eggs game working. How could you improve the game? Here are some ideas:
 
