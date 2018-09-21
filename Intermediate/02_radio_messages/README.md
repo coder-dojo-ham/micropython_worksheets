@@ -17,7 +17,6 @@ In MicroPython, you can use the radio to send and receive strings of characters 
 
 ---
 **To get started with radio, we want one person to program their micro:bit as a beacon that broadcasts messages. Everyone else programs their micro:bits to receive the messages. Decide which you are going to be, then jump to section 2 or section 3.**
-
 ---
 
 
