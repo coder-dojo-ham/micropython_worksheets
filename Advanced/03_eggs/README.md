@@ -61,7 +61,8 @@ class EggGame:
 
     def start(self):
         display.scroll("start")
-        def play(self):
+    
+    def play(self):
         display.scroll("play")
 
     def finish(self):
