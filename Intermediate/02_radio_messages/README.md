@@ -24,7 +24,7 @@ In MicroPython, you can use the radio to send and receive strings of characters 
 
 ## 2. Beacon
 
-Open the editor and create a new program.  Type a comment to explain what the program does, then add the import statements to include the micro:bit and radio functions we need.
+Open the Mu editor and create a new program.  Type a comment to explain what the program does, then add the import statements to include the micro:bit and radio functions we need.
 
 ```python
 # Radio beacon for micro:bit
@@ -71,13 +71,63 @@ while True:
     sleep(INTERVAL * 1000)
 ```
 
-Download the program to the micro:bit again and make sure you can still see the tick mark on the display.
+> Download the program to the micro:bit again and make sure you can still see the tick mark on the display.
 
-> Find someone with the receiver program so you can test the beacon.
+---
+**Find someone with the receiver program so you can test the beacon.**
 
+---
 
 
 ## 3. Receiver
 
-Text
+Open the Mu editor and create a new program.  Type a comment to explain what the program does, then add the import statements to include the micro:bit and radio functions we need.
+
+```python
+# Radio receiver for micro:bit
+
+from microbit import display, Image, sleep
+import radio
+```
+
+[TBC]
+
+```python
+OUR_GROUP = 42 # ask your mentor what group number to use
+```
+
+So that you know the program is running, add a statement to show something on the micro:bit display.
+
+```python
+display.show(Image.SQUARE_SMALL)
+```
+
+> Download the program to the micro:bit now; you should see a square on the display.
+
+Now add the code to receive and display messages. Start by configuring the radio to only receive from our group of micro:bits and then turn the radio on.
+
+```python
+radio.config(group=OUR_GROUP)
+radio.on()
+```
+
+Now add a loop that checks if a message has been received and scrolls it if it has.
+
+```python
+while True:
+    message = radio.receive()
+    if message:
+        display.scroll(message, delay=50)
+        display.show(Image.SQUARE_SMALL)
+```
+
+
+> Download the program to the micro:bit again and make sure you can still see the square on the display.
+
+---
+**Find someone with the beacon program so you can test the receiver.**
+
+---
+
+
 
