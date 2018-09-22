@@ -18,7 +18,7 @@ You will use a laptop program called Mu to write your code, then “flash” it 
 
 ## 2. Say "hello"
 
-Open the Mu editor and click the **New** button to create a new program file. Make sure you can see this.
+Open the Mu editor and click the `New` button to create a new program file. Make sure you can see this.
 
 ![empty program file](./media/image3.png)
 
