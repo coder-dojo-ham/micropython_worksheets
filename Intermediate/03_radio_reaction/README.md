@@ -205,7 +205,7 @@ The keyword `pass` is Python for “do nothing”.  If the radio message is neit
 ---
 **Find someone with the referee program so you can test the player program. It is best to test one player at a time with the referee before competing with other players. Make sure that all the player names are different.**
 
---
+---
 
 
 
