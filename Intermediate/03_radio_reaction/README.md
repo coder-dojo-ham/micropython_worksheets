@@ -28,7 +28,7 @@ Then the referee can start a new game.
 
 ## 2. Referee
 
-Open the editor and create a new program. Type a comment to explain what the program does, then add the import statements to include the micro:bit and radio functions we need.
+Open the editor and create a new program. Type a comment to explain what the program does, then add the `import` statements to include the micro:bit and radio functions we need.
 
 ```python
 # Radio reaction time game - referee
@@ -37,7 +37,7 @@ from microbit import display, Image, button_a
 import radio
 ```
 
-The referee sends out two types of messages: a “go” message to start each game, and a “winner” message with the name of the player who reacts first. Add these lines to your program to define what these messages will be.  Also add a constant to control how fast messages scroll on the display; the smaller the number the faster the scroll.
+The referee sends out two types of radio messages: a “go” message to start each game, and a “winner” message with the name of the player who reacts first. Add these lines to your program to define what these messages will be.  Also add a constant to control how fast messages scroll on the display; the smaller the number the faster the scroll.
 
 ```python
 GO_MESSAGE = "go"
@@ -54,8 +54,8 @@ OUR_GROUP = 73 # ask your mentor what group number to use
 Now add code to configure the radio to only broadcast to our group of micro:bits and then turn the radio on.
 
 ```python
-radio.on()
 radio.config(group=OUR_GROUP)
+radio.on()
 ```
 
 Then add code to display a message and icon.  The icon tells the referee that they can press Button A when they want to start the game.
@@ -65,13 +65,13 @@ display.scroll("referee ready", SCROLL_SPEED)
 display.show(Image.TARGET)
 ```
 
-Now add a while loop that will loop forever.  Each time round the loop is one round of the game.
+Now add a `while` loop that will loop forever.  Each time round the loop is one round of the game.
 
 ```python
 while True:
 ```
 
-At the start of each game, the program must wait for the referee to press Button A.  Add this while loop to keep checking if the button has been pressed.  The code inside the loop receives and throws away any old radio messages that happen to be received, so that they don’t interfere with the game.
+At the start of each game, the program must wait for the referee to press Button A.  Add this `while` loop to keep checking if the button has been pressed.  The code inside the loop receives and throws away any old radio messages that happen to be received, so that they don’t interfere with the game.
 
 ```python
     while not button_a.was_pressed():
@@ -93,9 +93,9 @@ Now the program needs to listen out for any received radio messages.  Add this c
         message = radio.receive()
 ```
 
-This while loop ends and the program continues as soon as the first message is received. 
+This `while` loop ends and the program continues as soon as the first message is received. 
 
-This message will contain the player’s name, so add this code to broadcast the winner to all the players and scroll it on the display.  The last line of code changes the display back to the icon, so the referee knows they can start another round when they want to.
+The message will contain the player’s name, so add this code to broadcast the winner to all the players and scroll it on the display.  The last line of code changes the display back to the icon, so the referee knows they can start another round when they want to.
 
 ```python
     radio.send(WINNER_PREFIX + message)
@@ -115,115 +115,97 @@ This message will contain the player’s name, so add this code to broadcast the
 
 ## 3. Player
 
-
-
-@@@@@@@@@@@@@@
-
-Open the Mu editor and create a new program.  Type a comment to explain what the program does, then add the import statements to include the micro:bit and radio functions we need.
+Open the editor and create a new program. Type a comment to explain what the program does, then add the import statements to include the micro:bit and radio functions we need.
 
 ```python
-# Radio beacon for micro:bit
+# Radio reaction time game - referee
 
-from microbit import display, Image, sleep
+from microbit import display, Image, button_a
 import radio
 ```
 
-The beacon will send out a message every few seconds.  You need to say what the message is and how often it is sent, so add these lines to your program.
+The referee sends out two types of radio messages: a “go” message to start each game, and a “winner” message with the name of the player who reacts first. Add these lines to your program to define what these messages will be.  Also add a constant to control how fast messages scroll on the display; the smaller the number the faster the scroll.
 
 ```python
-MESSAGE = "dojo"
-INTERVAL = 5
+GO_MESSAGE = "go"
+WINNER_PREFIX = "winner: "
+SCROLL_SPEED = 50
 ```
-
-You can choose your own message, but keep it short.  The `INTERVAL` is the number of seconds between sending messages.  Don’t make it too quick – 5 is a good number.
 
 [TBC]
 
 ```python
-OUR_GROUP = 42 # ask your mentor what group number to use
+OUR_GROUP = 73 # ask your mentor what group number to use
 ```
 
-Because you can’t see radio messages, add a statement to show something on the micro:bit display, just so you know that the program is running.
+The player program sends out a radio message with your name, so add this line to your code but use your own name.  If two of you have the same name, you will have to agree what name each of you uses.
 
 ```python
-display.show(Image.YES)
+MY_NAME = "Gita"
 ```
 
-> Download the program to the micro:bit now; you should see a tick mark on the display.
+In case you get bored and don’t press the button during a game, the program will automatically reset after a timeout period.  Add this line of code to set the timeout.  The number is in milliseconds, so 3000 will make the timeout three seconds.
 
-Next, add the code to broadcast the message.  Start by configuring the radio to only broadcast to our group of micro:bits and then turn the radio on.
+```python
+TIMEOUT = 3000
+```
+
+Next, define a function to do the main job of measuring how quickly you react.  The code changes the display icon to a tick and waits for one of two things to happen: either you press Button A or the timeout runs out.  If you pressed the button before the timeout, the function broadcasts a message with your name for the referee to receive.  Either way, the function changes the display back to a cross icon ready for the next game.
+
+```python
+def measure_reaction_time():
+    display.show(Image.YES)
+    start_time = running_time()
+    while (not button_a.is_pressed()) and (running_time() - start_time < TIMEOUT):
+        pass
+    if running_time() - start_time < TIMEOUT:
+        radio.send(MY_NAME)
+    display.show(Image.NO)
+```
+
+Now you can start on the main part of the program.  Add code to configure the radio to only broadcast to our group of micro:bits and then turn the radio on.
 
 ```python
 radio.config(group=OUR_GROUP)
 radio.on()
 ```
 
-Now add a loop that sends the message and sleeps before repeating.
+Add more code to display a message and the cross icon. The icon tells the player to wait for the tick icon before they can press Button A.
+
+```python
+display.scroll("player ready", SCROLL_SPEED)
+display.show(Image.NO)
+```
+
+> Download the program to the micro:bit now; you should see the message and the icon on the display.
+
+Now add a `while` loop that will loop forever and code to receive a radio message.
 
 ```python
 while True:
-    radio.send(MESSAGE)
-    sleep(INTERVAL * 1000)
+    message = str(radio.receive())
 ```
 
-> Download the program to the micro:bit again and make sure you can still see the tick mark on the display.
+The micro:bit radio will pick up all messages broadcast by any micro:bits that are in range.  That includes the messages sent by other players.  But we are only interested in messages from the referee.  Add this code to check for the “go” message and the “winner” message. Be careful to indent it correctly.
+
+```python
+    if message is GO_MESSAGE:
+        measure_reaction_time()
+    elif message.startswith(WINNER_PREFIX):
+        display.scroll(message, SCROLL_SPEED)
+        display.show(Image.NO)
+    else:
+        pass
+```
+
+The keyword `pass` is Python for “do nothing”.  If the radio message is neither the “go” message nor the “winner” message, we ignore it and wait for the next message. 
+
+> Download the program to the micro:bit now to make sure there are no errors.
 
 ---
-**Find someone with the receiver program so you can test the beacon.**
+**Find someone with the referee program so you can test the player program. It is best to test one player at a time with the referee before competing with other players. Make sure that all the player names are different.**
 
----
-
-
-
-## 3. Receiver
-
-Open the Mu editor and create a new program.  Type a comment to explain what the program does, then add the import statements to include the micro:bit and radio functions we need.
-
-```python
-# Radio receiver for micro:bit
-
-from microbit import display, Image, sleep
-import radio
-```
-
-[TBC]
-
-```python
-OUR_GROUP = 42 # ask your mentor what group number to use
-```
-
-So that you know the program is running, add a statement to show something on the micro:bit display.
-
-```python
-display.show(Image.SQUARE_SMALL)
-```
-
-> Download the program to the micro:bit now; you should see a square on the display.
-
-Now add the code to receive and display messages. Start by configuring the radio to only receive from our group of micro:bits and then turn the radio on.
-
-```python
-radio.config(group=OUR_GROUP)
-radio.on()
-```
-
-Now add a loop that checks if a message has been received and scrolls it if it has.
-
-```python
-while True:
-    message = radio.receive()
-    if message:
-        display.scroll(message, delay=50)
-        display.show(Image.SQUARE_SMALL)
-```
-
-
-> Download the program to the micro:bit again and make sure you can still see the square on the display.
-
----
-**Find someone with the beacon program so you can test the receiver.**
-
----
+--
 
 
 
