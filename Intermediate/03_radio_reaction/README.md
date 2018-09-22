@@ -45,7 +45,7 @@ WINNER_PREFIX = "winner: "
 SCROLL_SPEED = 50
 ```
 
-Other people may be using micro:bits for different radio projects nearby and we don't want to pick up their messages. We can configure our micro:bit to belong to a group that just has people using this worksheet.  To do this we give our microbit a group number between 1 and 255. Later on, we will add code that will ignore messages from other groups.
+Other people may be using micro:bits for different radio projects nearby and we don't want to pick up their messages. We can configure our micro:bit to belong to a group that just has people using this worksheet.  To do this we give our microbit a group number between 1 and 255. Later on, we will add code to ignore messages from other groups.
 
 ```python
 OUR_GROUP = 73 # ask your mentor what group number to use
@@ -132,7 +132,7 @@ WINNER_PREFIX = "winner: "
 SCROLL_SPEED = 50
 ```
 
-Other people may be using micro:bits for different radio projects nearby and we don't want to pick up their messages. We can configure our micro:bit to belong to a group that just has people using this worksheet.  To do this we give our microbit a group number between 1 and 255. Later on, we will add code that will ignore messages from other groups.
+Other people may be using micro:bits for different radio projects nearby and we don't want to pick up their messages. We can configure our micro:bit to belong to a group that just has people using this worksheet.  To do this we give our microbit a group number between 1 and 255. Later on, we will add code to ignore messages from other groups.
 
 ```python
 OUR_GROUP = 73 # ask your mentor what group number to use
