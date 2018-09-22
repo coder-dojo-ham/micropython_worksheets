@@ -51,12 +51,16 @@ SCROLL_SPEED = 50
 OUR_GROUP = 73 # ask your mentor what group number to use
 ```
 
-Now add code to configure the radio to only broadcast to our group of micro:bits and then turn the radio on.  Then add code to display a message and icon.  The icon tells the referee that they can press Button A when they want to start the game.
+Now add code to configure the radio to only broadcast to our group of micro:bits and then turn the radio on.
 
 ```python
 radio.on()
 radio.config(group=OUR_GROUP)
+```
 
+Then add code to display a message and icon.  The icon tells the referee that they can press Button A when they want to start the game.
+
+```python
 display.scroll("referee ready", SCROLL_SPEED)
 display.show(Image.TARGET)
 ```
