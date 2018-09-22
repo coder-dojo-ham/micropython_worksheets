@@ -209,3 +209,18 @@ The keyword `pass` is Python for “do nothing”.  If the radio message is neit
 
 
 
+## 4. Congratulations
+
+You have written an interactive MicroPython game, using the micro:bit radio and code for a timeout.
+
+Here is an idea for a follow-up experiment.
+
+1.  What happens if the referee starts a game but none of the players press Button A?
+
+2.  What do you have to do to when this happens, to start another game?
+
+3.  How would you change the referee code to stop this problem happening?  Ask your mentor for help.  Hint: a timeout might help.
+
+
+
+
