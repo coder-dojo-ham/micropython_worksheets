@@ -45,7 +45,7 @@ WINNER_PREFIX = "winner: "
 SCROLL_SPEED = 50
 ```
 
-[TBC]
+Other people may be using micro:bits for different radio projects nearby and we don't want to pick up their messages. We can configure our micro:bit to belong to a group that just has people using this worksheet.  To do this we give our microbit a group number between 1 and 255. Later on, we will add code that will ignore messages from other groups.
 
 ```python
 OUR_GROUP = 73 # ask your mentor what group number to use
@@ -132,7 +132,7 @@ WINNER_PREFIX = "winner: "
 SCROLL_SPEED = 50
 ```
 
-[TBC]
+Other people may be using micro:bits for different radio projects nearby and we don't want to pick up their messages. We can configure our micro:bit to belong to a group that just has people using this worksheet.  To do this we give our microbit a group number between 1 and 255. Later on, we will add code that will ignore messages from other groups.
 
 ```python
 OUR_GROUP = 73 # ask your mentor what group number to use
@@ -215,11 +215,11 @@ You have written an interactive MicroPython game, using the micro:bit radio and 
 
 Here is an idea for a follow-up experiment.
 
-1.  What happens if the referee starts a game but none of the players press Button A?
+1.  What happens if the referee starts a game but none of the players press Button A? Run some tests to find out what happens.
 
-2.  What do you have to do to when this happens, to start another game?
+2.  When this happens, what do you have to do to start another game?
 
-3.  How would you change the referee code to stop this problem happening?  Ask your mentor for help.  Hint: a timeout might help.
+3.  How could you change the referee code to stop this problem happening?  Ask your mentor for help.  Hint: a timeout might help.
 
 
 

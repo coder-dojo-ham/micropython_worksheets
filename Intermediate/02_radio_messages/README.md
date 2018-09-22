@@ -42,7 +42,7 @@ INTERVAL = 5
 
 You can choose your own message, but keep it short.  The `INTERVAL` is the number of seconds between sending messages.  Don’t make it too quick – 5 is a good number.
 
-[TBC]
+Other people may be using micro:bits for different radio projects nearby and we don't want to pick up their messages. We can configure our micro:bit to belong to a group that just has people using this worksheet.  To do this we give our microbit a group number between 1 and 255. Later on, we will add code that will ignore messages from other groups.
 
 ```python
 OUR_GROUP = 42 # ask your mentor what group number to use
@@ -91,7 +91,7 @@ from microbit import display, Image, sleep
 import radio
 ```
 
-[TBC]
+Other people may be using micro:bits for different radio projects nearby and we don't want to pick up their messages. We can configure our micro:bit to belong to a group that just has people using this worksheet.  To do this we give our microbit a group number between 1 and 255. Later on, we will add code that will ignore messages from other groups.
 
 ```python
 OUR_GROUP = 42 # ask your mentor what group number to use
